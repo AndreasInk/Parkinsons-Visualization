@@ -57,20 +57,20 @@ st.line_chart(filtered_data2["length"])
 st.header('Walking Speed')
 st.write('Walking speed is the measurement of how fast a person walks.')
 st.subheader('Healthy')
-mean = filtered_data['length'].mean()
-median = filtered_data['length'].median()
+mean = filtered_data['speed'].mean()
+median = filtered_data['speed'].median()
 st.write('Average: ' + str(mean))
-st.line_chart(filtered_data["length"])
+st.line_chart(filtered_data["speed"])
 
 
 filtered_data2 = df[df["sourceName"] == 'Parkinsons']
 
 
 st.subheader("Parkinson's")
-mean = filtered_data2['length'].mean()
-median = filtered_data2['length'].median()
+mean = filtered_data2['speed'].mean()
+median = filtered_data2['speed'].median()
 st.write('Average: ' + str(mean))
-st.line_chart(filtered_data2["length"])
+st.line_chart(filtered_data2["speed"])
 
 
 
