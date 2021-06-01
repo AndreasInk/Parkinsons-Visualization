@@ -4,3 +4,5 @@ pickle
 pathlib
 pandas
 scikit-learn
+scikit
+sklearn
