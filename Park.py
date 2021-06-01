@@ -78,12 +78,12 @@ class MultipleInputs():
     length: List[float]
 
 def load_regression_model():
-    import_dir = Path("/Users/andreas/Desktop/ParkML/models/reg_model.sav")
+    import_dir = Path("models/reg_model.sav")
     model = pickle.load(open(import_dir, "rb"))
     return model
 
 def load_classifier_model():
-    import_dir = Path("/Users/andreas/Desktop/ParkML/models/class_model.sav")
+    import_dir = Path("models/class_model.sav")
     model = pickle.load(open(import_dir, "rb"))
     return model
 
