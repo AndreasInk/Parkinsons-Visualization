@@ -7,8 +7,8 @@ from pathlib import Path
 st.image('logo.png')
 st.title("Park")
 st.subheader("Detecting And Tracking Parkinson's Disease With Mobility Metrics")
-df = pd.read_csv(Path("ParkinsonsData.csv"))
-df2 = pd.read_csv(Path("HealthyData.csv"))
+df = pd.read_csv(Path("/data/arkinsonsData.csv"))
+df2 = pd.read_csv(Path("/data/HealthyData.csv"))
 st.subheader("94% Test Accuracy When Predicting Parkinson's With Mobility Metrics")
 
 ##hour_to_filter = st.slider('hour', 0, 23, 17)
