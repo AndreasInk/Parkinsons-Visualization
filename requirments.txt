@@ -1,5 +1,4 @@
 streamlit
-pydantic
 typing
 pickle
 pathlib
