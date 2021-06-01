@@ -3,5 +3,4 @@ typing
 pickle
 pathlib
 pandas
-scikit-learn==0.19.2
-sklearn
+scikit-learn
