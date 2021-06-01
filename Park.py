@@ -3,6 +3,7 @@ import pandas as pd
 from typing import List
 import pickle
 from pathlib import Path
+import sklearn
 
 st.image('logo.png')
 st.title("Park")
