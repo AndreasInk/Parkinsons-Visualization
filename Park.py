@@ -3,7 +3,6 @@ import pandas as pd
 from typing import List
 import pickle
 from pathlib import Path
-import sklearn as sk
 st.image('logo.png')
 st.title("Park")
 st.subheader("Detecting And Tracking Parkinson's Disease With Mobility Metrics")
