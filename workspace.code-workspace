@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../AiAR-Website/css copy"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ParkML"
+	}
+}

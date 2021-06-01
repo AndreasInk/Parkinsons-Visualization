@@ -3,20 +3,19 @@ import pandas as pd
 from pydantic import BaseModel
 from typing import List
 import pickle
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
 from pathlib import Path
 
 st.image('logo.png')
 st.title("Park")
 st.subheader("Detecting And Tracking Parkinson's Disease With Mobility Metrics")
-df = pd.read_csv("ParkData.csv")
+df = pd.read_csv("/Users/andreas/Desktop/ParkML/data/ParkinsonsData.csv")
+df2 = pd.read_csv("/Users/andreas/Desktop/ParkML/data/HealthyData.csv")
 st.subheader("94% Test Accuracy When Predicting Parkinson's With Mobility Metrics")
 
 ##hour_to_filter = st.slider('hour', 0, 23, 17)
 ##df['endDate'] = pd.to_datetime(df['endDate'], errors='coerce')
-filtered_data = df[df["sourceName"] == 'Healthy']
-
+filtered_data = df2[df2["sourceName"] == 'Healthy']
+filtered_data.to_csv('/Users/andreas/Desktop/ParkML/data/HealthyData.csv')
 st.header('Double Support Time')
 st.write('Double support occurs when both feet are in contact with the ground simultaneously; double support time is the sum of the time elapsed during two periods of double support in the gait cycle')
 st.subheader('Healthy')
@@ -44,7 +43,7 @@ st.line_chart(filtered_data["length"])
 
 
 filtered_data2 = df[df["sourceName"] == 'Parkinsons']
-
+filtered_data2.to_csv('/Users/andreas/Desktop/ParkML/data/ParkinsonsData.csv')
 
 st.subheader("Parkinson's")
 mean = filtered_data2['length'].mean()
@@ -80,12 +79,12 @@ class MultipleInputs(BaseModel):
     length: List[float]
 
 def load_regression_model():
-    import_dir = Path("/Users/andreas/Desktop/ParkML/reg_model.sav")
+    import_dir = Path("/Users/andreas/Desktop/ParkML/models/reg_model.sav")
     model = pickle.load(open(import_dir, "rb"))
     return model
 
 def load_classifier_model():
-    import_dir = Path("/Users/andreas/Desktop/ParkML/class_model.sav")
+    import_dir = Path("/Users/andreas/Desktop/ParkML/models/class_model.sav")
     model = pickle.load(open(import_dir, "rb"))
     return model
 
