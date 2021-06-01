@@ -92,13 +92,13 @@ def multi_pred(item: MultipleInputs):
     for d, s, l in zip(item.double, item.speed, item.length):
         model_input.append([d, s, l])
     reg_model = load_regression_model()
-    class_model = load_classifier_model()
+
 
     reg_pred = reg_model.predict(model_input)
-    class_pred = class_model.predict(model_input)
+
     return {
         "regression_predictions": [float(i) for i in list(reg_pred)],
-        "classification_predictions": [int(i) for i in list(class_pred)],
+        
     }
 
 load_regression_model()
