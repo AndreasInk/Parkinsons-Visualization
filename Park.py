@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from pydantic import BaseModel
 from typing import List
 import pickle
 from pathlib import Path
@@ -73,7 +72,7 @@ st.line_chart(filtered_data2["speed"])
 
 
 
-class MultipleInputs(BaseModel):
+class MultipleInputs():
     double: List[float]
     speed: List[float]
     length: List[float]

@@ -3,9 +3,3 @@ typing
 pickle
 pathlib
 pandas
-Cython==0.29.23
-devtools==0.6.1
-email-validator==1.1.2
-dataclasses==0.6; python_version < '3.7'
-typing-extensions==3.10.0.0
-python-dotenv==0.17.1
