@@ -1,5 +1,5 @@
+scikit-learn
 streamlit
 pandas
 typing
 pathlib
-scikit-learn
