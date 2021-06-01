@@ -3,3 +3,4 @@ typing
 pickle
 pathlib
 pandas
+sklearn
