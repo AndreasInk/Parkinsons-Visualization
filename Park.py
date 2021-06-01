@@ -7,14 +7,14 @@ from pathlib import Path
 st.image('logo.png')
 st.title("Park")
 st.subheader("Detecting And Tracking Parkinson's Disease With Mobility Metrics")
-df = pd.read_csv("/Users/andreas/Desktop/ParkML/data/ParkinsonsData.csv")
-df2 = pd.read_csv("/Users/andreas/Desktop/ParkML/data/HealthyData.csv")
+df = pd.read_csv("/data/ParkinsonsData.csv")
+df2 = pd.read_csv("/data/HealthyData.csv")
 st.subheader("94% Test Accuracy When Predicting Parkinson's With Mobility Metrics")
 
 ##hour_to_filter = st.slider('hour', 0, 23, 17)
 ##df['endDate'] = pd.to_datetime(df['endDate'], errors='coerce')
 filtered_data = df2[df2["sourceName"] == 'Healthy']
-filtered_data.to_csv('/Users/andreas/Desktop/ParkML/data/HealthyData.csv')
+filtered_data.to_csv('/data/HealthyData.csv')
 st.header('Double Support Time')
 st.write('Double support occurs when both feet are in contact with the ground simultaneously; double support time is the sum of the time elapsed during two periods of double support in the gait cycle')
 st.subheader('Healthy')
