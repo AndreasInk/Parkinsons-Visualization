@@ -8,7 +8,7 @@ st.title("Park")
 st.subheader("Detecting And Tracking Parkinson's Disease With Mobility Metrics")
 df = pd.read_csv(("data/ParkinsonsData.csv"))
 df2 = pd.read_csv(("data/HealthyData.csv"))
-st.subheader("94% Test Accuracy When Predicting Parkinson's With Mobility Metrics")
+st.subheader("77% Test Accuracy When Predicting Parkinson's With Mobility Metrics")
 
 ##hour_to_filter = st.slider('hour', 0, 23, 17)
 ##df['endDate'] = pd.to_datetime(df['endDate'], errors='coerce')
@@ -92,12 +92,14 @@ def multi_pred(item: MultipleInputs):
     for d, s, l in zip(item.double, item.speed, item.length):
         model_input.append([d, s, l])
     reg_model = load_regression_model()
-
+    class_model = load_classifier_model() 
 
     reg_pred = reg_model.predict(model_input)
+    class_pred = class_model.predict(model_input)
 
     return {
         "regression_predictions": [float(i) for i in list(reg_pred)],
+         "class_predictions": [float(i) for i in list(class_pred)],
         
     }
 
@@ -118,13 +120,16 @@ st.line_chart(predictions)
 
 
 
-predictions = pd.DataFrame(multi_pred(filtered_data2)['regression_predictions']) 
+predictions = pd.DataFrame(multi_pred(df)) 
 
 st.subheader("Parkinson's")
-mean = predictions.mean()
-median = predictions.median()
+mean = predictions['regression_predictions'].mean()
+median = predictions['regression_predictions'].median()
 strMedian = str(median).replace('dtype: float64', '')
 st.write('Median: ' + strMedian)
-st.line_chart(predictions)
+st.line_chart(predictions['regression_predictions'])
 
+healthyFiltered =  predictions[predictions['class_predictions'] == 0]
+parkinsonsFiltered =  predictions[predictions['class_predictions'] == 1]
 
+st.header("Model Accuracy = " + str(len(parkinsonsFiltered)/len(filtered_data2)))

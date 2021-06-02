@@ -8,7 +8,7 @@ import coremltools
 
 
 def clean_df():
-    DATA_DIR = Path("")
+    DATA_DIR = Path("data/")
     df = pd.read_csv(DATA_DIR / Path("Parkinsons.csv"))
     df.head()
 
