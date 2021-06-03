@@ -119,7 +119,7 @@ predictions = pd.DataFrame(multi_pred(filtered_data)["regression_predictions"])
 
 st.header("Predicted Score")
 st.write(
-    "The predicted score is estimated using  double support time, step length, and walking speed.  A 0 indicates a healthier condition while a 1 indicates a poorer condition."
+    "The predicted score is estimated using double support time, step length, and walking speed. A 0 indicates a healthier condition while a 1 indicates a poorer condition."
 )
 st.subheader("Healthy")
 mean = predictions.mean()
