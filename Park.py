@@ -7,13 +7,13 @@ from pathlib import Path
 st.image("logo.png")
 st.title("Park")
 st.subheader("Detecting And Tracking Parkinson's Disease With Mobility Metrics")
-df = pd.read_csv(("data/ParkinsonsData.csv"))
-df2 = pd.read_csv(("data/HealthyData.csv"))
+parkinsons_df = pd.read_csv("data/ParkinsonsData.csv")
+healthy_df = pd.read_csv("data/HealthyData.csv")
 st.subheader("77% Test Accuracy When Predicting Parkinson's With Mobility Metrics")
 
 # hour_to_filter = st.slider('hour', 0, 23, 17)
-# df['endDate'] = pd.to_datetime(df['endDate'], errors='coerce')
-filtered_data = df2[df2["sourceName"] == "Healthy"]
+# parkinsons_df['endDate'] = pd.to_datetime(parkinsons_df['endDate'], errors='coerce')
+filtered_data = healthy_df[healthy_df["sourceName"] == "Healthy"]
 
 st.header("Double Support Time")
 st.write(
@@ -21,16 +21,17 @@ st.write(
 )
 st.subheader("Healthy")
 mean = filtered_data["double"].mean()
-st.write("Average: " + str(mean))
+st.write(f"Average: {mean}")
 st.line_chart(filtered_data["double"])
 
 
-filtered_data2 = df[df["sourceName"] == "Parkinsons"]
+filtered_data2 = parkinsons_df[parkinsons_df["sourceName"] == "Parkinsons"]
 
 
 st.subheader("Parkinson's")
 mean = filtered_data2["double"].mean()
-st.write("Average: " + str(mean))
+# st.write("Average: " + str(mean))
+st.write(f"Average: {mean}")
 st.line_chart(filtered_data2["double"])
 
 
@@ -39,17 +40,19 @@ st.write("Step length is the distance covered when a person takes one step.")
 st.subheader("Healthy")
 mean = filtered_data["length"].mean()
 median = filtered_data["length"].median()
-st.write("Average: " + str(mean))
+# st.write("Average: " + str(mean))
+st.write(f"Average: {mean}")
 st.line_chart(filtered_data["length"])
 
 
-filtered_data2 = df[df["sourceName"] == "Parkinsons"]
+filtered_data2 = parkinsons_df[parkinsons_df["sourceName"] == "Parkinsons"]
 # filtered_data2.to_csv('/Users/andreas/Desktop/ParkML/data/ParkinsonsData.csv')
 
 st.subheader("Parkinson's")
 mean = filtered_data2["length"].mean()
 median = filtered_data2["length"].median()
-st.write("Average: " + str(mean))
+# st.write("Average: " + str(mean))
+st.write(f"Average: {mean}")
 st.line_chart(filtered_data2["length"])
 
 
@@ -58,17 +61,19 @@ st.write("Walking speed is the measurement of how fast a person walks.")
 st.subheader("Healthy")
 mean = filtered_data["speed"].mean()
 median = filtered_data["speed"].median()
-st.write("Average: " + str(mean))
+# st.write("Average: " + str(mean))
+st.write(f"Average: {mean}")
 st.line_chart(filtered_data["speed"])
 
 
-filtered_data2 = df[df["sourceName"] == "Parkinsons"]
+filtered_data2 = parkinsons_df[parkinsons_df["sourceName"] == "Parkinsons"]
 
 
 st.subheader("Parkinson's")
 mean = filtered_data2["speed"].mean()
 median = filtered_data2["speed"].median()
-st.write("Average: " + str(mean))
+# st.write("Average: " + str(mean))
+st.write(f"Average: {mean}")
 st.line_chart(filtered_data2["speed"])
 
 
@@ -124,7 +129,7 @@ st.write("Median: " + strMedian)
 st.line_chart(predictions)
 
 
-predictions = pd.DataFrame(multi_pred(df))
+predictions = pd.DataFrame(multi_pred(parkinsons_df))
 
 st.subheader("Parkinson's")
 mean = predictions["regression_predictions"].mean()
@@ -136,4 +141,5 @@ st.line_chart(predictions["regression_predictions"])
 healthyFiltered = predictions[predictions["class_predictions"] == 0]
 parkinsonsFiltered = predictions[predictions["class_predictions"] == 1]
 
+# TODO: change system for finding model accuracy
 st.header("Model Accuracy = " + str(len(parkinsonsFiltered) / len(filtered_data2)))
