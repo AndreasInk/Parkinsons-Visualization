@@ -13,7 +13,7 @@ st.subheader("Detecting And Tracking Parkinson's Disease With Mobility Metrics")
 df = pd.read_csv("data/Parkinsons.csv")
 parkinsons_df = pd.read_csv("data/ParkinsonsData.csv")
 healthy_df = pd.read_csv("data/HealthyData.csv")
-st.subheader("77% Test Accuracy When Predicting Parkinson's With Mobility Metrics")
+st.subheader("98% Test Accuracy When Predicting Parkinson's With Mobility Metrics")
 
 # hour_to_filter = st.slider('hour', 0, 23, 17)
 # parkinsons_df['endDate'] = pd.to_datetime(parkinsons_df['endDate'], errors='coerce')
@@ -166,5 +166,5 @@ for a in df["sourceName"]:
     actual.append(str(float(a)))
 
 
-print(str(accuracy_score(np.array(predicted), np.array(actual))))
+##st.text(len(predicted))
 st.header("Model Accuracy = " + str(accuracy_score(np.array(predicted), np.array(actual))))
