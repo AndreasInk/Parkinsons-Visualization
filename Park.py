@@ -4,7 +4,6 @@ from typing import List
 import pickle
 from pathlib import Path
 from sklearn.metrics import accuracy_score
-from sklearn.linear_model import LinearRegression
 import numpy as np
 st.image("logo.png")
 st.title("Park")
