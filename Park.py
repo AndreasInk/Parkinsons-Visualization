@@ -9,6 +9,7 @@ st.image("logo.png")
 st.title("Park")
 st.subheader("Detecting And Tracking Parkinson's Disease With Mobility Metrics")
 df = pd.read_csv("data/Parkinsons.csv")
+feature_list = [i for i in list(df.columns) if i != "sourceName"]
 parkinsons_df = pd.read_csv("data/ParkinsonsData.csv")
 healthy_df = pd.read_csv("data/HealthyData.csv")
 st.subheader("98% Test Accuracy When Predicting Parkinson's With Mobility Metrics")
@@ -17,9 +18,9 @@ st.subheader("98% Test Accuracy When Predicting Parkinson's With Mobility Metric
 # parkinsons_df['endDate'] = pd.to_datetime(parkinsons_df['endDate'], errors='coerce')
 filtered_data = healthy_df[healthy_df["sourceName"] == "Healthy"]
 
-st.header("Double Support Time")
+st.header("Double Support Time (%)")
 st.write(
-    "Double support occurs when both feet are in contact with the ground simultaneously; double support time is the sum of the time elapsed during two periods of double support in the gait cycle"
+    "Double support time is the precentage of time during a walk that both feet are on the ground."
 )
 st.subheader("Healthy")
 mean = filtered_data["double"].mean()
@@ -37,7 +38,7 @@ st.write(f"Average: {mean}")
 st.line_chart(filtered_data2["double"])
 
 
-st.header("Step Length")
+st.header("Step Length (inches)")
 st.write("Step length is the distance covered when a person takes one step.")
 st.subheader("Healthy")
 mean = filtered_data["length"].mean()
@@ -58,7 +59,7 @@ st.write(f"Average: {mean}")
 st.line_chart(filtered_data2["length"])
 
 
-st.header("Walking Speed")
+st.header("Walking Speed (mph)")
 st.write("Walking speed is the measurement of how fast a person walks.")
 st.subheader("Healthy")
 mean = filtered_data["speed"].mean()
@@ -114,7 +115,7 @@ def multi_pred(item: MultipleInputs):
     }
 
 
-load_regression_model()
+model = load_regression_model()
 
 predictions = pd.DataFrame(multi_pred(filtered_data)["regression_predictions"])
 
@@ -126,7 +127,7 @@ st.write(
 st.subheader("Healthy")
 mean = predictions.mean()
 median = predictions.median()
-strMedian = str(median).replace("dtype: float64", "")
+strMedian = str(float(median)).replace("dtype: float64", "")
 st.write("Median: " + strMedian)
 st.line_chart(predictions)
 
@@ -166,3 +167,16 @@ for a in df["sourceName"]:
 
 ##st.text(len(predicted))
 st.header("Model Accuracy = " + str(accuracy_score(np.array(predicted), np.array(actual))))
+
+
+def reg_metrics(predictions):
+        # Calculate the absolute errors
+        errors = abs(predictions - df["sourceName"])
+        return round(np.mean(errors), 2)
+
+meanError = reg_metrics(predictions["regression_predictions"])
+st.header("Regression Mean Error = " + str(meanError))
+st.write("A zero indicates a perfect model, while a higher vaue indicates a weaker model")
+
+
+    

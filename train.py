@@ -81,7 +81,7 @@ def show_pred_real(test_features, test_labels, predictions):
     combined_df = pd.DataFrame(test_features, columns=["double", "speed", "length"])
     combined_df["real_sourceName"] = test_labels
     combined_df["pred_sourceName"] = predictions
-
+    combined_df.to_csv("testData.csv")
     combined_df["correct"] = (
         combined_df["real_sourceName"] == combined_df["pred_sourceName"]
     )
